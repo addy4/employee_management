@@ -33,4 +33,9 @@ public class DepartmentController {
         return departmentRepository.findAll();
     }
 
+    @GetMapping(path = "/v1/get/{id}", produces = "application/json")
+    public Optional<Department> findEmployeeById(@PathVariable(value = "id") Integer id_number) {
+        return departmentRepository.findById(id_number);
+    }
+
 }

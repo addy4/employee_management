@@ -1,0 +1,15 @@
+curl -X POST -H "Content-Type: application/json" -d '{"deptName": "QA", "headName": "Sun Jian"}' http://localhost:8080/departments/v1/save
+curl -X POST -H "Content-Type: application/json" -d '{"firstName": "Aadhaar", "lastName": "Bhatia", "patents": "14", "empDepartment": "QA"}' http://localhost:8080/employees/v1/save
+curl http://localhost:8080/departments/v1/get
+curl http://localhost:8080/employees/v1/get
+
+
+---------
+DONE
+1. "QA", "qa" are duplicates, cannnot be inserted. 
+2. APIs for POST and GET of employees and departments. 
+
+TO DO
+1. Mapping: dept to employee (many to many relationship e.g Mich can be in R&D manager, so mich is in rnd and mgmt both)
+2. Get manager: run query on all employees of QA as to for which empDepartment list has "mgmt" 
+3. make empdepartment a list .. something like this. 

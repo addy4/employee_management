@@ -36,7 +36,7 @@ public class Department {
         this.id = id;
     }
 
-    @Column(name = "Department_Name", nullable = false)
+    @Column(name = "Department_Name", nullable = false, unique = true, columnDefinition = "citext")
     public String getDeptName() {
         return deptName;
     }
