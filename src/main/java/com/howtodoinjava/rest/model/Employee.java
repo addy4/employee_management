@@ -1,44 +1,45 @@
 package com.howtodoinjava.rest.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
+import org.springframework.transaction.annotation.Transactional;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
+@Transactional
+@Data
+@NoArgsConstructor
 @Table(name = "workers")
 public class Employee {
 
     public Employee() {
-
     }
 
-    public Employee(Integer id, String firstName, String lastName, Integer patents, String empDepartment) {
-        super();
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.patents = patents;
-        this.empDepartment = empDepartment;
-    }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "emp_id")
     private Integer id;
+
     private String firstName;
     private String lastName;
     private Integer patents;
     private String empDepartment;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dept_id")
+    private Department department;
 
     @Column(name = "First_Name", nullable = false)
     public String getFirstName() {
@@ -76,9 +77,7 @@ public class Employee {
         this.empDepartment = empDepartment;
     }
 
-    @Override
-    public String toString() {
-        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", patents=" + patents
-                + "]";
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }
